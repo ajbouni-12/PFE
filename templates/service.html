@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /*    *******************  CSS DE PAGE HOME  **************** */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+ul li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.main li {
+    margin-right: 10px;
+}
+
+
+
+/* Modern styles for a clean look */
+ul {
+    display: flex;
+    gap: 20px;
+}
+
+a {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+.main-links, .login-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.main-links li, .login-links li {
+    margin-right: 10px;
+}
+
+.main-links a, .login-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #555;
+}
+
+.container {
+    background-image: url('/static/bg2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.house-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.house-option {
+    text-align: center;
+    cursor: pointer;
+}
+
+.house-option img {
+    width: 90%;
+    height: 90%;
+}
+
+.ar_flech {
+    display: flex;
+}
+
+.flech {
+    font-size: 50px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+    <title>Agence Tunisia location ATL</title>
+</head>
+    
+<body>
+    <header>
+        <nav>
+            <ul class="main">
+                <li><a href="{{ url_for('home1') }}">Home</a></li>
+               <li><a href="{{ url_for('service') }}">Service</a></li>
+
+            </ul>
+            <ul class="logout">
+                <li><a href="{{ url_for('home') }}">Log Out</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Choisissez une maison à votre choix :</h1>
+        <div class="house-options" id="houseOptions">
+            <!-- Ici vous pouvez ajouter autant de maisons que vous le souhaitez -->
+            <div class="house-option" onclick="redirectToForm('maison1')" >
+                <!-- Remplacez 'maison1' par la référence réelle de la maison -->
+                <img src="{{ url_for('static', filename='house1.jpeg') }}" alt="Maison 1" onclick="redirectToForm('maison1')">
+                <p class="num_maison">Maison 1</p>
+            </div>
+        </div>
+        <div class="ar_flech">
+            <button class="flech" onclick="showImage(-1)">←</button>
+            <button class="flech" onclick="showImage(1)">→</button>
+        </div>
+    </div>
+   
+    <script>
+        var currentImageIndex = 0;
+        var houseImages = [  
+            "{{ url_for('static', filename='house1.jpeg') }}",
+            "{{ url_for('static', filename='house2.jpeg') }}",
+            "{{ url_for('static', filename='house3.jpeg') }}",
+            "{{ url_for('static', filename='house4.jpeg') }}",
+            "{{ url_for('static', filename='house5.jpeg') }}",
+            "{{ url_for('static', filename='house6.jpeg') }}",
+        ];
+            
+        function showImage(offset) {
+            currentImageIndex += offset;
+        
+            if (currentImageIndex >= houseImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = houseImages.length - 1;
+            }
+        
+            var houseOptionsDiv = document.getElementById("houseOptions");
+            houseOptionsDiv.innerHTML = "";
+        
+            var houseOptionDiv = document.createElement("div");
+            houseOptionDiv.className = "house-option";
+            houseOptionDiv.innerHTML = `
+                <img src="${houseImages[currentImageIndex]}" alt="Maison ${currentImageIndex + 1}" onclick="redirectToForm('maison${currentImageIndex + 1}')">
+                <p class="num_maison">Maison ${currentImageIndex + 1}</p>
+            `;
+            houseOptionsDiv.appendChild(houseOptionDiv);
+        }
+        // Redirigez vers le formulaire en passant le numéro de la maison choisie dans l'URL
+        function redirectToForm(reference) {
+            window.location.href = '/form.html?ref=' + reference;
+        }
+    </script>
+     <footer>
+        <p>Date de fabrication 2024</p>
+    </footer>
+    
+</body>
+</html>

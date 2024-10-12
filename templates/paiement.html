@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Paiement</title>
+    
+    <!-- Ajout de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         background-image: url('/static/bg2.png');
+         background-size: 100%;
+         background-position: center;
+         background-repeat: no-repeat;
+
+}
+
+        .payment-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center; /* Centrer le contenu */
+            position: relative; /* Position relative pour les icônes de paiement */
+        }
+
+        .payment-icons {
+            text-align: center;
+            margin-bottom: 20px; /* Ajout de marge en bas */
+        }
+
+        .payment-icons i {
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+    <div class="payment-container">
+        <h1> <a>Payez en ligne </a></h1>
+        <!-- Ajout des icônes de type de paiement -->
+        <div class="payment-icons">
+            <i class="fab fa-cc-visa" style="color: #1a0dab;"></i>
+            <i class="fab fa-cc-paypal" style="color: #00457c;"></i>
+            <i class="fab fa-cc-mastercard" style="color: #ea611d;"></i>
+            <i class="fab fa-cc-amex" style="color: #0078a5;"></i>
+        </div>
+
+        <!-- Formulaire de paiement -->
+        <h2>Informations de Paiement</h2>
+        <form id="payment-form" action="/submit-payment" method="POST">
+            <div class="form-group">
+                <label for="cardholder-name">Nom sur la carte</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" required>
+            </div>
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input type="text" id="card-number" name="card-number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Date d'expiration</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+            </div>
+            <div class="form-group">
+                <label for="cvc">Cryptogramme visuel</label>
+                <input type="text" id="cvc" name="cvc" required>
+            </div>
+            <button type="submit" class="btn">Payer</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript pour rediriger l'utilisateur après la soumission du formulaire
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+            // Empêcher le comportement par défaut du formulaire (envoi des données et rechargement de la page)
+            event.preventDefault();
+            // Rediriger l'utilisateur vers la page souhaitée (dans cet exemple, "home1.html")
+            window.location.href = "/home1";
+        });
+    </script>
+    </div>
+</body>
+</html>

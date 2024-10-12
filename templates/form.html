@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agence Tunisia location ATL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+    <form id="submit-form" action="{{ url_for('submit_form') }}" method="POST">
+        <h2>Formulaire de location avec code QR</h2>
+    
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="prenom">Prenom:</label><br>
+        <input type="text" id="prenom" name="prenom"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="telephone">Telephone:</label><br>
+        <input type="tel" id="telephone" name="telephone"><br>
+        <label for="cin">Numero CIN:</label><br>
+        <input type="text" id="cin" name="cin"><br>
+        <label for="date_debut">Date de debut de location:</label><br>
+        <input type="date" id="date_debut" name="date_debut"><br>
+        <label for="date_fin">Date de fin de location:</label><br>
+        <input type="date" id="date_fin" name="date_fin"><br><br>
+        <!-- Champ pour afficher la référence de la maison -->
+        <label for="reference_maison">Référence de la maison:</label><br>
+        <input type="text" id="reference_maison" name="reference_maison" readonly><br><br>
+    
+        <input type="submit" value="Submit">
+    </form>
+    
+    <div id="qrCode"></div>
+    
+    <script>
+        // Fonction pour récupérer la référence de la maison à partir de l'URL
+        function getReferenceFromURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('ref');
+        }
+    
+        // Fonction pour ajouter la référence de la maison au champ de texte du formulaire
+        function addReferenceToForm() {
+            var referenceMaison = getReferenceFromURL();
+            document.getElementById('reference_maison').value = referenceMaison;
+        }
+    
+        // Exécuter la fonction pour ajouter la référence au chargement de la page
+        document.addEventListener("DOMContentLoaded", function() {
+            addReferenceToForm();
+        });
+    
+        // Éviter le comportement par défaut du formulaire et soumettre via AJAX
+        document.getElementById("submit-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+            submitForm(); // Appeler la fonction submitForm() après la soumission du formulaire
+        });
+    
+        function submitForm() {
+            var formData = new FormData(document.getElementById("submit-form"));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('submit_form') }}", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status ===500) {
+                        // Succès : afficher un message ou rediriger l'utilisateur
+                        alert("Les données ont été enregistrées avec succès ");
+                        window.location.href = "/paiement"; // Rediriger l'utilisateur vers la page home1
+                    } else {
+                        // Erreur : afficher un message d'erreur ou traiter l'erreur
+                        alert("Une erreur s'est produite");
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+    </script>
+    </div>
+    </body>
+    </html>
+

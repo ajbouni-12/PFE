@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('/static/bg2.png');
+    background-size: cover; /* Redimensionne l'image pour couvrir entièrement l'élément body */
+    background-position: center; /* Centre l'image de fond */
+    background-repeat: no-repeat;
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+ul li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.main li {
+    margin-right: 10px;
+}
+
+
+
+/* Modern styles for a clean look */
+ul {
+    display: flex;
+    gap: 20px;
+}
+
+a {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* *********************** css pour l'animation **************** */
+
+
+    </style>
+    <title>Agence Tunisia location ATL</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="main">
+                <li><a href="{{ url_for('home1') }}">Home</a></li>
+               <li><a href="{{ url_for('service') }}">Service</a></li>
+
+            </ul>
+            <ul class="logout">
+                <li><a href="{{ url_for('home') }}">Log Out</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <footer>
+        <p>Date de fabrication 2024</p>
+    </footer>
+    <script src="home.js"></script>
+</body>
+</html>

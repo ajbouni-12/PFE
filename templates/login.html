@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    
+}
+
+/* header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+ul li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.main li {
+    margin-right: 10px;
+}
+
+/* Modern styles for a clean look */
+ul {
+    display: flex;
+    gap: 20px;
+}
+
+a {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+
+/* footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/************************************************************************/
+.form_login {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/static/bg2.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.form {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #666;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.button {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+     
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/*********************** forget password **********************/
+
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+    </style>
+    <title>Agence Tunisia location ATL</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="main">
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+
+                   <li><a href="{{ url_for('signup') }}">SignUp</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <form class="form_login" action="{{ url_for('form_login') }}" method="post">
+            <h1>Login</h1>
+            <label for="email">Email:</label>
+            <input type="text" id="username" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            <div class="button">
+            <button type="submit" >Login</button>
+            
+        </div>
+
+        </form>
+    </div>
+    <footer>
+        <p>Date de fabrication 2024</p>
+    </footer>
+</body>
+
+</html>
